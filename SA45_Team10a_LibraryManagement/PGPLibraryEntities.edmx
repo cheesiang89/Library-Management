@@ -1,0 +1,937 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PGPLibraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="AuthorID" />
+          </Key>
+          <Property Name="AuthorID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookAdjustment">
+          <Key>
+            <PropertyRef Name="BookID" />
+            <PropertyRef Name="DateAdjust" />
+          </Key>
+          <Property Name="BookID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AdjustmentQty" Type="int" Nullable="false" />
+          <Property Name="DateAdjust" Type="datetime" Nullable="false" />
+          <Property Name="WhoAdjust" Type="int" Nullable="false" />
+          <Property Name="AdjustmentReason" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookListing">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BookTitle" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BookType" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Language" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AuthorID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PublisherID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TotalStock" Type="int" Nullable="false" />
+          <Property Name="NumberLoaned" Type="int" Nullable="false" />
+          <Property Name="Section" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CallNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ControlTable">
+          <Key>
+            <PropertyRef Name="NumberType" />
+          </Key>
+          <Property Name="NumberType" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstFreeNo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IssueTrans">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="BookID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DateBorrow" Type="datetime" Nullable="false" />
+          <Property Name="DateDue" Type="datetime" Nullable="false" />
+          <Property Name="DateActualReturn" Type="datetime" />
+          <Property Name="LoanStatus" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="255" />
+          <Property Name="OverdueFine" Type="real" Nullable="false" />
+          <Property Name="FinePaymentStatus" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Librarian">
+          <Key>
+            <PropertyRef Name="LibrarianID" />
+          </Key>
+          <Property Name="LibrarianID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NRIC" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Salutation" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Salt" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberCategory">
+          <Key>
+            <PropertyRef Name="MemberCategory" />
+          </Key>
+          <Property Name="MemberCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MemberCatDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MaxNumBooksLoanAllow" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MemberCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NRIC" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Salutation" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="Postcode" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="CurrentNumberOnLoan" Type="int" Nullable="false" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Salt" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Publishers">
+          <Key>
+            <PropertyRef Name="PublisherID" />
+          </Key>
+          <Property Name="PublisherID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PublisherName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SA45Team10A-PGPLibrary.dbo.BookAvailability' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BookAvailability">
+          <Key>
+            <PropertyRef Name="BookID" />
+            <PropertyRef Name="TotalStock" />
+            <PropertyRef Name="NumberLoaned" />
+          </Key>
+          <Property Name="BookID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TotalStock" Type="int" Nullable="false" />
+          <Property Name="NumberLoaned" Type="int" Nullable="false" />
+          <Property Name="QuantityAvailable" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SA45Team10A-PGPLibrary.dbo.BookBorrowAnalysis' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BookBorrowAnalysis">
+          <Key>
+            <PropertyRef Name="MemberCategory" />
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="DateBorrow" />
+          </Key>
+          <Property Name="MemberCategory" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="DateBorrow" Type="datetime" Nullable="false" />
+          <Property Name="NoOfTransaction" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SA45Team10A-PGPLibrary.dbo.BookList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BookList">
+          <Key>
+            <PropertyRef Name="BookID" />
+            <PropertyRef Name="BookTitle" />
+            <PropertyRef Name="ISBN" />
+            <PropertyRef Name="BookType" />
+            <PropertyRef Name="AuthorName" />
+            <PropertyRef Name="PublisherName" />
+            <PropertyRef Name="TotalStock" />
+            <PropertyRef Name="NumberLoaned" />
+          </Key>
+          <Property Name="BookID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BookTitle" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BookType" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PublisherName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TotalStock" Type="int" Nullable="false" />
+          <Property Name="NumberLoaned" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SA45Team10A-PGPLibrary.dbo.BorrowReceipt' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BorrowReceipt">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="BookID" />
+            <PropertyRef Name="BookTitle" />
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="DateBorrow" />
+            <PropertyRef Name="DateDue" />
+          </Key>
+          <Property Name="TransactionID" Type="int" Nullable="false" />
+          <Property Name="BookID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="BookTitle" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DateBorrow" Type="datetime" Nullable="false" />
+          <Property Name="DateDue" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="Authors_AuthorID_FK_1">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
+          <End Role="BookListing" Type="Self.BookListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="AuthorID" />
+            </Principal>
+            <Dependent Role="BookListing">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BookListing_BookID_FK_1">
+          <End Role="BookListing" Type="Self.BookListing" Multiplicity="1" />
+          <End Role="BookAdjustment" Type="Self.BookAdjustment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookListing">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookAdjustment">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BookListing_BookID_FK_2">
+          <End Role="BookListing" Type="Self.BookListing" Multiplicity="1" />
+          <End Role="IssueTrans" Type="Self.IssueTrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookListing">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="IssueTrans">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Librarian_LibrarianID_FK_1">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="1" />
+          <End Role="BookAdjustment" Type="Self.BookAdjustment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="LibrarianID" />
+            </Principal>
+            <Dependent Role="BookAdjustment">
+              <PropertyRef Name="WhoAdjust" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Members_MemberID_FK_1">
+          <End Role="Members" Type="Self.Members" Multiplicity="1" />
+          <End Role="IssueTrans" Type="Self.IssueTrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="IssueTrans">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Publishers_PublisherID_FK_2">
+          <End Role="Publishers" Type="Self.Publishers" Multiplicity="1" />
+          <End Role="BookListing" Type="Self.BookListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publishers">
+              <PropertyRef Name="PublisherID" />
+            </Principal>
+            <Dependent Role="BookListing">
+              <PropertyRef Name="PublisherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="PGPLibraryModelStoreContainer">
+          <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookAdjustment" EntityType="Self.BookAdjustment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookListing" EntityType="Self.BookListing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ControlTable" EntityType="Self.ControlTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IssueTrans" EntityType="Self.IssueTrans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Librarian" EntityType="Self.Librarian" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberCategory" EntityType="Self.MemberCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publishers" EntityType="Self.Publishers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookAvailability" EntityType="Self.BookAvailability" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BookAvailability].[BookID] AS [BookID], 
+    [BookAvailability].[TotalStock] AS [TotalStock], 
+    [BookAvailability].[NumberLoaned] AS [NumberLoaned], 
+    [BookAvailability].[QuantityAvailable] AS [QuantityAvailable]
+    FROM [dbo].[BookAvailability] AS [BookAvailability]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BookBorrowAnalysis" EntityType="Self.BookBorrowAnalysis" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BookBorrowAnalysis].[MemberCategory] AS [MemberCategory], 
+    [BookBorrowAnalysis].[MemberID] AS [MemberID], 
+    [BookBorrowAnalysis].[DateBorrow] AS [DateBorrow], 
+    [BookBorrowAnalysis].[NoOfTransaction] AS [NoOfTransaction]
+    FROM [dbo].[BookBorrowAnalysis] AS [BookBorrowAnalysis]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BookList" EntityType="Self.BookList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BookList].[BookID] AS [BookID], 
+    [BookList].[BookTitle] AS [BookTitle], 
+    [BookList].[ISBN] AS [ISBN], 
+    [BookList].[BookType] AS [BookType], 
+    [BookList].[AuthorName] AS [AuthorName], 
+    [BookList].[PublisherName] AS [PublisherName], 
+    [BookList].[TotalStock] AS [TotalStock], 
+    [BookList].[NumberLoaned] AS [NumberLoaned]
+    FROM [dbo].[BookList] AS [BookList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="BorrowReceipt" EntityType="Self.BorrowReceipt" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BorrowReceipt].[TransactionID] AS [TransactionID], 
+    [BorrowReceipt].[BookID] AS [BookID], 
+    [BorrowReceipt].[BookTitle] AS [BookTitle], 
+    [BorrowReceipt].[MemberID] AS [MemberID], 
+    [BorrowReceipt].[FirstName] AS [FirstName], 
+    [BorrowReceipt].[LastName] AS [LastName], 
+    [BorrowReceipt].[DateBorrow] AS [DateBorrow], 
+    [BorrowReceipt].[DateDue] AS [DateDue]
+    FROM [dbo].[BorrowReceipt] AS [BorrowReceipt]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="Authors_AuthorID_FK_1" Association="Self.Authors_AuthorID_FK_1">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="BookListing" EntitySet="BookListing" />
+          </AssociationSet>
+          <AssociationSet Name="BookListing_BookID_FK_1" Association="Self.BookListing_BookID_FK_1">
+            <End Role="BookListing" EntitySet="BookListing" />
+            <End Role="BookAdjustment" EntitySet="BookAdjustment" />
+          </AssociationSet>
+          <AssociationSet Name="BookListing_BookID_FK_2" Association="Self.BookListing_BookID_FK_2">
+            <End Role="BookListing" EntitySet="BookListing" />
+            <End Role="IssueTrans" EntitySet="IssueTrans" />
+          </AssociationSet>
+          <AssociationSet Name="Librarian_LibrarianID_FK_1" Association="Self.Librarian_LibrarianID_FK_1">
+            <End Role="Librarian" EntitySet="Librarian" />
+            <End Role="BookAdjustment" EntitySet="BookAdjustment" />
+          </AssociationSet>
+          <AssociationSet Name="Members_MemberID_FK_1" Association="Self.Members_MemberID_FK_1">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="IssueTrans" EntitySet="IssueTrans" />
+          </AssociationSet>
+          <AssociationSet Name="Publishers_PublisherID_FK_2" Association="Self.Publishers_PublisherID_FK_2">
+            <End Role="Publishers" EntitySet="Publishers" />
+            <End Role="BookListing" EntitySet="BookListing" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PGPLibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="AuthorID" />
+          </Key>
+          <Property Name="AuthorID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BookListings" Relationship="Self.Authors_AuthorID_FK_1" FromRole="Authors" ToRole="BookListing" />
+        </EntityType>
+        <EntityType Name="BookAdjustment">
+          <Key>
+            <PropertyRef Name="BookID" />
+            <PropertyRef Name="DateAdjust" />
+          </Key>
+          <Property Name="BookID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AdjustmentQty" Type="Int32" Nullable="false" />
+          <Property Name="DateAdjust" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WhoAdjust" Type="Int32" Nullable="false" />
+          <Property Name="AdjustmentReason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BookListing" Relationship="Self.BookListing_BookID_FK_1" FromRole="BookAdjustment" ToRole="BookListing" />
+          <NavigationProperty Name="Librarian" Relationship="Self.Librarian_LibrarianID_FK_1" FromRole="BookAdjustment" ToRole="Librarian" />
+        </EntityType>
+        <EntityType Name="BookListing">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ISBN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BookTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BookType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Language" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublisherID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalStock" Type="Int32" Nullable="false" />
+          <Property Name="NumberLoaned" Type="Int32" Nullable="false" />
+          <Property Name="Section" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CallNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Author" Relationship="Self.Authors_AuthorID_FK_1" FromRole="BookListing" ToRole="Authors" />
+          <NavigationProperty Name="BookAdjustments" Relationship="Self.BookListing_BookID_FK_1" FromRole="BookListing" ToRole="BookAdjustment" />
+          <NavigationProperty Name="IssueTrans" Relationship="Self.BookListing_BookID_FK_2" FromRole="BookListing" ToRole="IssueTrans" />
+          <NavigationProperty Name="Publisher" Relationship="Self.Publishers_PublisherID_FK_2" FromRole="BookListing" ToRole="Publishers" />
+        </EntityType>
+        <EntityType Name="ControlTable">
+          <Key>
+            <PropertyRef Name="NumberType" />
+          </Key>
+          <Property Name="NumberType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstFreeNo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IssueTran">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="BookID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateBorrow" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateDue" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateActualReturn" Type="DateTime" Precision="3" />
+          <Property Name="LoanStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OverdueFine" Type="Single" Nullable="false" />
+          <Property Name="FinePaymentStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BookListing" Relationship="Self.BookListing_BookID_FK_2" FromRole="IssueTrans" ToRole="BookListing" />
+          <NavigationProperty Name="Member" Relationship="Self.Members_MemberID_FK_1" FromRole="IssueTrans" ToRole="Members" />
+        </EntityType>
+        <EntityType Name="Librarian">
+          <Key>
+            <PropertyRef Name="LibrarianID" />
+          </Key>
+          <Property Name="LibrarianID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NRIC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salutation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Postcode" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BookAdjustments" Relationship="Self.Librarian_LibrarianID_FK_1" FromRole="Librarian" ToRole="BookAdjustment" />
+        </EntityType>
+        <EntityType Name="MemberCategory">
+          <Key>
+            <PropertyRef Name="MemberCategory1" />
+          </Key>
+          <Property Name="MemberCategory1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberCatDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaxNumBooksLoanAllow" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NRIC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salutation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Postcode" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="CurrentNumberOnLoan" Type="Int32" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="IssueTrans" Relationship="Self.Members_MemberID_FK_1" FromRole="Members" ToRole="IssueTrans" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="PublisherID" />
+          </Key>
+          <Property Name="PublisherID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublisherName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BookListings" Relationship="Self.Publishers_PublisherID_FK_2" FromRole="Publishers" ToRole="BookListing" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="BookAvailability">
+          <Key>
+            <PropertyRef Name="BookID" />
+            <PropertyRef Name="TotalStock" />
+            <PropertyRef Name="NumberLoaned" />
+          </Key>
+          <Property Name="BookID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalStock" Type="Int32" Nullable="false" />
+          <Property Name="NumberLoaned" Type="Int32" Nullable="false" />
+          <Property Name="QuantityAvailable" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BookBorrowAnalysi">
+          <Key>
+            <PropertyRef Name="MemberCategory" />
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="DateBorrow" />
+          </Key>
+          <Property Name="MemberCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="DateBorrow" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NoOfTransaction" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BookList">
+          <Key>
+            <PropertyRef Name="BookID" />
+            <PropertyRef Name="BookTitle" />
+            <PropertyRef Name="ISBN" />
+            <PropertyRef Name="BookType" />
+            <PropertyRef Name="AuthorName" />
+            <PropertyRef Name="PublisherName" />
+            <PropertyRef Name="TotalStock" />
+            <PropertyRef Name="NumberLoaned" />
+          </Key>
+          <Property Name="BookID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BookTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ISBN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BookType" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublisherName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalStock" Type="Int32" Nullable="false" />
+          <Property Name="NumberLoaned" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BorrowReceipt">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+            <PropertyRef Name="BookID" />
+            <PropertyRef Name="BookTitle" />
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="DateBorrow" />
+            <PropertyRef Name="DateDue" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" />
+          <Property Name="BookID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BookTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateBorrow" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateDue" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="Authors_AuthorID_FK_1">
+          <End Role="Authors" Type="Self.Author" Multiplicity="1" />
+          <End Role="BookListing" Type="Self.BookListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="AuthorID" />
+            </Principal>
+            <Dependent Role="BookListing">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BookListing_BookID_FK_1">
+          <End Role="BookListing" Type="Self.BookListing" Multiplicity="1" />
+          <End Role="BookAdjustment" Type="Self.BookAdjustment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookListing">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookAdjustment">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Librarian_LibrarianID_FK_1">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="1" />
+          <End Role="BookAdjustment" Type="Self.BookAdjustment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="LibrarianID" />
+            </Principal>
+            <Dependent Role="BookAdjustment">
+              <PropertyRef Name="WhoAdjust" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BookListing_BookID_FK_2">
+          <End Role="BookListing" Type="Self.BookListing" Multiplicity="1" />
+          <End Role="IssueTrans" Type="Self.IssueTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookListing">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="IssueTrans">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Publishers_PublisherID_FK_2">
+          <End Role="Publishers" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="BookListing" Type="Self.BookListing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publishers">
+              <PropertyRef Name="PublisherID" />
+            </Principal>
+            <Dependent Role="BookListing">
+              <PropertyRef Name="PublisherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Members_MemberID_FK_1">
+          <End Role="Members" Type="Self.Member" Multiplicity="1" />
+          <End Role="IssueTrans" Type="Self.IssueTran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="IssueTrans">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PGPLibraryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="BookAdjustments" EntityType="Self.BookAdjustment" />
+          <EntitySet Name="BookListings" EntityType="Self.BookListing" />
+          <EntitySet Name="ControlTables" EntityType="Self.ControlTable" />
+          <EntitySet Name="IssueTrans" EntityType="Self.IssueTran" />
+          <EntitySet Name="Librarians" EntityType="Self.Librarian" />
+          <EntitySet Name="MemberCategories" EntityType="Self.MemberCategory" />
+          <EntitySet Name="Members" EntityType="Self.Member" />
+          <EntitySet Name="Publishers" EntityType="Self.Publisher" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="BookAvailabilities" EntityType="Self.BookAvailability" />
+          <EntitySet Name="BookBorrowAnalysis" EntityType="Self.BookBorrowAnalysi" />
+          <EntitySet Name="BookLists" EntityType="Self.BookList" />
+          <EntitySet Name="BorrowReceipts" EntityType="Self.BorrowReceipt" />
+          <AssociationSet Name="Authors_AuthorID_FK_1" Association="Self.Authors_AuthorID_FK_1">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="BookListing" EntitySet="BookListings" />
+          </AssociationSet>
+          <AssociationSet Name="BookListing_BookID_FK_1" Association="Self.BookListing_BookID_FK_1">
+            <End Role="BookListing" EntitySet="BookListings" />
+            <End Role="BookAdjustment" EntitySet="BookAdjustments" />
+          </AssociationSet>
+          <AssociationSet Name="Librarian_LibrarianID_FK_1" Association="Self.Librarian_LibrarianID_FK_1">
+            <End Role="Librarian" EntitySet="Librarians" />
+            <End Role="BookAdjustment" EntitySet="BookAdjustments" />
+          </AssociationSet>
+          <AssociationSet Name="BookListing_BookID_FK_2" Association="Self.BookListing_BookID_FK_2">
+            <End Role="BookListing" EntitySet="BookListings" />
+            <End Role="IssueTrans" EntitySet="IssueTrans" />
+          </AssociationSet>
+          <AssociationSet Name="Publishers_PublisherID_FK_2" Association="Self.Publishers_PublisherID_FK_2">
+            <End Role="Publishers" EntitySet="Publishers" />
+            <End Role="BookListing" EntitySet="BookListings" />
+          </AssociationSet>
+          <AssociationSet Name="Members_MemberID_FK_1" Association="Self.Members_MemberID_FK_1">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="IssueTrans" EntitySet="IssueTrans" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PGPLibraryModelStoreContainer" CdmEntityContainer="PGPLibraryEntities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="PGPLibraryModel.Author">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookAdjustments">
+            <EntityTypeMapping TypeName="PGPLibraryModel.BookAdjustment">
+              <MappingFragment StoreEntitySet="BookAdjustment">
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="AdjustmentQty" ColumnName="AdjustmentQty" />
+                <ScalarProperty Name="DateAdjust" ColumnName="DateAdjust" />
+                <ScalarProperty Name="WhoAdjust" ColumnName="WhoAdjust" />
+                <ScalarProperty Name="AdjustmentReason" ColumnName="AdjustmentReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookListings">
+            <EntityTypeMapping TypeName="PGPLibraryModel.BookListing">
+              <MappingFragment StoreEntitySet="BookListing">
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="BookTitle" ColumnName="BookTitle" />
+                <ScalarProperty Name="BookType" ColumnName="BookType" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
+                <ScalarProperty Name="TotalStock" ColumnName="TotalStock" />
+                <ScalarProperty Name="NumberLoaned" ColumnName="NumberLoaned" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="CallNumber" ColumnName="CallNumber" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ControlTables">
+            <EntityTypeMapping TypeName="PGPLibraryModel.ControlTable">
+              <MappingFragment StoreEntitySet="ControlTable">
+                <ScalarProperty Name="NumberType" ColumnName="NumberType" />
+                <ScalarProperty Name="FirstFreeNo" ColumnName="FirstFreeNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IssueTrans">
+            <EntityTypeMapping TypeName="PGPLibraryModel.IssueTran">
+              <MappingFragment StoreEntitySet="IssueTrans">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="DateBorrow" ColumnName="DateBorrow" />
+                <ScalarProperty Name="DateDue" ColumnName="DateDue" />
+                <ScalarProperty Name="DateActualReturn" ColumnName="DateActualReturn" />
+                <ScalarProperty Name="LoanStatus" ColumnName="LoanStatus" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="OverdueFine" ColumnName="OverdueFine" />
+                <ScalarProperty Name="FinePaymentStatus" ColumnName="FinePaymentStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Librarians">
+            <EntityTypeMapping TypeName="PGPLibraryModel.Librarian">
+              <MappingFragment StoreEntitySet="Librarian">
+                <ScalarProperty Name="LibrarianID" ColumnName="LibrarianID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NRIC" ColumnName="NRIC" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberCategories">
+            <EntityTypeMapping TypeName="PGPLibraryModel.MemberCategory">
+              <MappingFragment StoreEntitySet="MemberCategory">
+                <ScalarProperty Name="MemberCategory1" ColumnName="MemberCategory" />
+                <ScalarProperty Name="MemberCatDescription" ColumnName="MemberCatDescription" />
+                <ScalarProperty Name="MaxNumBooksLoanAllow" ColumnName="MaxNumBooksLoanAllow" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="PGPLibraryModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MemberCategory" ColumnName="MemberCategory" />
+                <ScalarProperty Name="NRIC" ColumnName="NRIC" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CurrentNumberOnLoan" ColumnName="CurrentNumberOnLoan" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publishers">
+            <EntityTypeMapping TypeName="PGPLibraryModel.Publisher">
+              <MappingFragment StoreEntitySet="Publishers">
+                <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
+                <ScalarProperty Name="PublisherName" ColumnName="PublisherName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PGPLibraryModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookAvailabilities">
+            <EntityTypeMapping TypeName="PGPLibraryModel.BookAvailability">
+              <MappingFragment StoreEntitySet="BookAvailability">
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="TotalStock" ColumnName="TotalStock" />
+                <ScalarProperty Name="NumberLoaned" ColumnName="NumberLoaned" />
+                <ScalarProperty Name="QuantityAvailable" ColumnName="QuantityAvailable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookBorrowAnalysis">
+            <EntityTypeMapping TypeName="PGPLibraryModel.BookBorrowAnalysi">
+              <MappingFragment StoreEntitySet="BookBorrowAnalysis">
+                <ScalarProperty Name="MemberCategory" ColumnName="MemberCategory" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="DateBorrow" ColumnName="DateBorrow" />
+                <ScalarProperty Name="NoOfTransaction" ColumnName="NoOfTransaction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookLists">
+            <EntityTypeMapping TypeName="PGPLibraryModel.BookList">
+              <MappingFragment StoreEntitySet="BookList">
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="BookTitle" ColumnName="BookTitle" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="BookType" ColumnName="BookType" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="PublisherName" ColumnName="PublisherName" />
+                <ScalarProperty Name="TotalStock" ColumnName="TotalStock" />
+                <ScalarProperty Name="NumberLoaned" ColumnName="NumberLoaned" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BorrowReceipts">
+            <EntityTypeMapping TypeName="PGPLibraryModel.BorrowReceipt">
+              <MappingFragment StoreEntitySet="BorrowReceipt">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="BookTitle" ColumnName="BookTitle" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateBorrow" ColumnName="DateBorrow" />
+                <ScalarProperty Name="DateDue" ColumnName="DateDue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PGPLibraryModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PGPLibraryModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PGPLibraryModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PGPLibraryModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PGPLibraryModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PGPLibraryModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PGPLibraryModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

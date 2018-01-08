@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B7684CA-253F-4095-AA7E-FECB8496E0D8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SA45_Team10a_LibraryManagement</RootNamespace>
+    <AssemblyName>SA45_Team10a_LibraryManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Author.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookAdjustment.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookAvailability.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookBorrowAnalysi.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookList.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookListing.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="borrowReceipt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ControlTable.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CR_BookBorrowTrend.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CR_BookBorrowTrend.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CR_Booklisting.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CR_Booklisting.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CR_BorrowReceipt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CR_BorrowReceipt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frmBorrowBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBorrowBook.Designer.cs">
+      <DependentUpon>frmBorrowBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBorrowBook_BookID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBorrowBook_BookID.Designer.cs">
+      <DependentUpon>frmBorrowBook_BookID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBorrowReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBorrowReceipt.Designer.cs">
+      <DependentUpon>frmBorrowReceipt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBorrowTrendReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBorrowTrendReport.Designer.cs">
+      <DependentUpon>frmBorrowTrendReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDashboardLibrarian.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDashboardLibrarian.Designer.cs">
+      <DependentUpon>frmDashboardLibrarian.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDashboardMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDashboardMember.Designer.cs">
+      <DependentUpon>frmDashboardMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetails.Designer.cs">
+      <DependentUpon>frmDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListofBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListofBook.Designer.cs">
+      <DependentUpon>frmListofBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageBook.Designer.cs">
+      <DependentUpon>frmManageBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageMember.Designer.cs">
+      <DependentUpon>frmManageMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewMember.Designer.cs">
+      <DependentUpon>frmNewMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewMember2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewMember2.Designer.cs">
+      <DependentUpon>frmNewMember2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPopularBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPopularBook.Designer.cs">
+      <DependentUpon>frmPopularBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProfile.Designer.cs">
+      <DependentUpon>frmProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReturnBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReturnBook.Designer.cs">
+      <DependentUpon>frmReturnBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSearchBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchBook.Designer.cs">
+      <DependentUpon>frmSearchBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IssueTran.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Librarian.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginHashing.cs" />
+    <Compile Include="Member.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MemberCategory.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation.cs" />
+    <Compile Include="PGPLibraryEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PGPLibraryEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PGPLibraryEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PGPLibraryEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PGPLibraryEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="popularBook.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>popularBook.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publisher.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>PGPLibraryEntities.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CR_BookBorrowTrend.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CR_BookBorrowTrend.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CR_Booklisting.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CR_Booklisting.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CR_BorrowReceipt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CR_BorrowReceipt.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBorrowBook.resx">
+      <DependentUpon>frmBorrowBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBorrowBook_BookID.resx">
+      <DependentUpon>frmBorrowBook_BookID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBorrowReceipt.resx">
+      <DependentUpon>frmBorrowReceipt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBorrowTrendReport.resx">
+      <DependentUpon>frmBorrowTrendReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDashboardLibrarian.resx">
+      <DependentUpon>frmDashboardLibrarian.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDashboardMember.resx">
+      <DependentUpon>frmDashboardMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetails.resx">
+      <DependentUpon>frmDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListofBook.resx">
+      <DependentUpon>frmListofBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageBook.resx">
+      <DependentUpon>frmManageBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageMember.resx">
+      <DependentUpon>frmManageMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewMember.resx">
+      <DependentUpon>frmNewMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewMember2.resx">
+      <DependentUpon>frmNewMember2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPopularBook.resx">
+      <DependentUpon>frmPopularBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProfile.resx">
+      <DependentUpon>frmProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReturnBook.resx">
+      <DependentUpon>frmReturnBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchBook.resx">
+      <DependentUpon>frmSearchBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="popularBook.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>popularBook.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="DataSet.xsc">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet.xss">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="PGPLibraryEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PGPLibraryEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="PGPLibraryEntities.edmx.diagram">
+      <DependentUpon>PGPLibraryEntities.edmx</DependentUpon>
+    </None>
+    <None Include="Properties\DataSources\Author.datasource" />
+    <None Include="Properties\DataSources\BookAdjustment.datasource" />
+    <None Include="Properties\DataSources\BookListing.datasource" />
+    <None Include="Properties\DataSources\ControlTable.datasource" />
+    <None Include="Properties\DataSources\frmBorrowBook.datasource" />
+    <None Include="Properties\DataSources\frmBorrowBook_BookID.datasource" />
+    <None Include="Properties\DataSources\frmDashboardLibrarian.datasource" />
+    <None Include="Properties\DataSources\frmDashboardMember.datasource" />
+    <None Include="Properties\DataSources\frmDetails.datasource" />
+    <None Include="Properties\DataSources\frmLogin.datasource" />
+    <None Include="Properties\DataSources\frmManageBook.datasource" />
+    <None Include="Properties\DataSources\frmManageMember.datasource" />
+    <None Include="Properties\DataSources\frmNewMember.datasource" />
+    <None Include="Properties\DataSources\frmNewMember2.datasource" />
+    <None Include="Properties\DataSources\frmProfile.datasource" />
+    <None Include="Properties\DataSources\frmReport.datasource" />
+    <None Include="Properties\DataSources\frmReturnBook.datasource" />
+    <None Include="Properties\DataSources\frmSearchBook.datasource" />
+    <None Include="Properties\DataSources\IssueTran.datasource" />
+    <None Include="Properties\DataSources\Librarian.datasource" />
+    <None Include="Properties\DataSources\LoginHashing.datasource" />
+    <None Include="Properties\DataSources\Member.datasource" />
+    <None Include="Properties\DataSources\MemberCategory.datasource" />
+    <None Include="Properties\DataSources\Navigation.datasource" />
+    <None Include="Properties\DataSources\PGPLibraryEntities.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\Publisher.datasource" />
+    <None Include="Properties\DataSources\SA45_Team10a_LibraryManagement.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\SA45_Team10a_LibraryManagement.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\sysdiagram.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8R0]KU%289_L~Q[B%28TJCPLS0Y.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PGPLibraryLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PGPLibraryEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PGPLibraryEntities.edmx</DependentUpon>
+      <LastGenOutput>PGPLibraryEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="PGPLibraryEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PGPLibraryEntities.edmx</DependentUpon>
+      <LastGenOutput>PGPLibraryEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
